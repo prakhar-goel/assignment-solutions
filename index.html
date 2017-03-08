@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URI comparison</title>
+    <link rel="stylesheet" type="text/css" href="static/bootstrap.min.css">
+    <style type="text/css">
+    .container{
+        padding: 20px 10px;
+    }
+    .input-group{
+        padding-bottom: 10px;
+    }
+    .text-input{
+      width:445px;
+    }
+    
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+      <h3 col-lg-6 col-md-offset-1>String compression</h3>
+      <div class="col-lg-6 col-md-offset-1">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Enter string to shorten" id="stringText">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="shortenButton" onclick="shortenStringButton()">Shorten String</button>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-offset-1">
+          <br>
+          <div class="well" id="shortenedString">Please enter the string to shorten</div>
+      </div>
+    </div>
+    <div class="row urlcomparison">
+      <h3 col-lg-6 col-md-offset-1>URI comparison</h3>
+      <div class="col-lg-6 col-md-offset-1">
+        <div class="input-group text-input">
+          <input type="text" class="form-control" placeholder="Enter first url" id="uri1Text">
+        </div>
+        <div class="input-group text-input">
+          <input type="text" class="form-control" placeholder="Enter second url" id="uri2Text">
+        </div>
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="compareURIButton" onclick="compareURIButton()">Compare URLs</button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <table class="table table-striped" style="margin-top:20px; display: none;" id="URIComparisonTable">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>URI 1</th>
+            <th>URI 2</th>
+            <th>Equality</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+      <div class="well" id="uriCompareVerdictString" style="display: none"></div>
+    </div>
+
+</div>
+<script type="text/javascript" src="jsimplementation.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
