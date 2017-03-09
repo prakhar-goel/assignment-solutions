@@ -137,7 +137,13 @@ function compareURIButton(){
 	var uri2 = document.getElementById("uri2Text").value;
 	var uriBreakUp1 = getURIComponents(uri1);
 	var uriBreakUp2 = getURIComponents(uri2);
+	var verdictEle = document.getElementById("uriCompareVerdictString");
+	verdictEle.style.display = "block";
 
+	if(uriBreakUp1.length == 0 || uriBreakUp2.length == 0 ){
+		verdictEle.innerHTML = "Please enter both the URIs to compare.";
+		return;
+	}
 	var table = document.getElementById("URIComparisonTable");
 	table.style.display = "block";
 
@@ -153,14 +159,13 @@ function compareURIButton(){
 		var newCell3  = newRow.insertCell(2);
 		var newCell4  = newRow.insertCell(3);
 
-		newCell1.innerHTML = uriBreakUp1[i][0];		
+		newCell1.innerHTML = uriBreakUp1[i][0];
 
 		if(uriBreakUp1[i][0] == "parameters"){
 			newCell2.innerHTML = "<pre>"+JSON.stringify(uriBreakUp1[i][1], null, '\t')+"</pre>";
 			newCell3.innerHTML = "<pre>"+JSON.stringify(uriBreakUp2[i][1], null, '\t')+"</pre>";
 			newCell4.innerHTML = basicObjectComparison(uriBreakUp1[i][1], uriBreakUp2[i][1])?"<b>True</b>":"<b>False</b>";
 			isMatch &= basicObjectComparison(uriBreakUp1[i][1], uriBreakUp2[i][1]);
-			// var newText  = document.createTextNode(basicObjectComparison(uriBreakUp1[i][1])==basicObjectComparison(uriBreakUp2[i][1])?"<b>True</b>":"<b>False</b>");	
 		}
 		else{
 			newCell2.innerHTML = uriBreakUp1[i][1];
@@ -170,9 +175,7 @@ function compareURIButton(){
 		}
 		
 	}
-	var verdictEle = document.getElementById("uriCompareVerdictString");
-	verdictEle.style.display = "block";
-	console.log(isMatch);
+
 	verdictEle.innerHTML = "The URIs are "+(isMatch?"":"<b>NOT</b> ")+"Equal.";
 
 }
