@@ -164,13 +164,13 @@ function compareURIButton(){
 		if(uriBreakUp1[i][0] == "parameters"){
 			newCell2.innerHTML = "<pre>"+JSON.stringify(uriBreakUp1[i][1], null, '\t')+"</pre>";
 			newCell3.innerHTML = "<pre>"+JSON.stringify(uriBreakUp2[i][1], null, '\t')+"</pre>";
-			newCell4.innerHTML = basicObjectComparison(uriBreakUp1[i][1], uriBreakUp2[i][1])?"<b>True</b>":"<b>False</b>";
+			newCell4.innerHTML = basicObjectComparison(uriBreakUp1[i][1], uriBreakUp2[i][1])?"<b><font color='green'>True</font></b>":"<b><font color='red'>False</font></b>";
 			isMatch &= basicObjectComparison(uriBreakUp1[i][1], uriBreakUp2[i][1]);
 		}
 		else{
 			newCell2.innerHTML = uriBreakUp1[i][1];
 			newCell3.innerHTML = uriBreakUp2[i][1];
-			newCell4.innerHTML = uriBreakUp1[i][1]==uriBreakUp2[i][1]?"<b>True</b>":"<b>False</b>";
+			newCell4.innerHTML = uriBreakUp1[i][1]==uriBreakUp2[i][1]?"<b><font color='green'>True</font></b>":"<b><font color='red'>False</font></b>";
 			isMatch &= uriBreakUp1[i][1]==uriBreakUp2[i][1];
 		}
 		
