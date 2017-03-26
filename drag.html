@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Sortable - Connect lists</title>
+    <link rel="stylesheet" href="static/drag/jquery-ui.css">
+    <link rel="stylesheet" href="static/bootstrap.min.css">
+    <style>
+    .list-cust .list-group-item {
+        background-color: #EEE;
+        border-right: 0px;
+        border-left: 0px;
+    }
+
+    .list-group-item.active,
+    .list-group-item.active:hover {
+        z-index: 2;
+        color: #fff;
+        background-color: #888;
+        border-color: #888;
+    }
+
+    .list-cust .list-group-item:first-child {
+        border-top-right-radius: 0px;
+        border-top-left-radius: 0px;
+    }
+
+    .list-cust .list-group-item:last-child {
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+    .font-px-24{
+      font-size: 24px;
+    }
+    .well{
+      width: 110px;
+      padding: 10px;
+    }
+    .text-inside-well{
+      float: right;
+      margin-left: auto;
+      margin-right: 0;
+      display: inline;
+      color: #000;
+    }
+    .draggableProjects{
+      min-height: 100px;
+    }
+    .container {
+        margin-top: 50px;
+    }
+    </style>
+    <script src="static/drag/jquery-1.12.4.js"></script>
+    <script src="static/drag/jquery-ui.js"></script>
+    <script src="static/bootstrap.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        var countTotalProjects = 0;
+        var recount = function() {
+            var ids = ["projectsToDo", "projectsInProgress", "projectsDone"];
+            for(var i=0; i<ids.length; i++){
+              $("#"+ids[i]+"-proj-count").text($("#"+ids[i]+" > a").length+" projects");
+            }
+        }
+
+        $(function() {
+            $("#projectsToDo, #projectsInProgress, #projectsDone").sortable({
+                connectWith: ".draggableProjects",
+                update: recount
+            }).disableSelection();
+        });
+
+        $("#addProjectForm").submit(function(event) {
+            event.preventDefault();
+            var projectName = $("#projectname-text").val();
+            $("#projectsToDo").append('<a class="list-group-item">'+projectName+'</a>');
+            countTotalProjects += 1;
+            $("#total-projects").text(countTotalProjects+" projects");
+            recount();
+        })
+
+    });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10">
+              <form id="addProjectForm">
+                  <div class="form-group">
+                      <label for="projectname-text">Add Project</label>
+                      <input id="projectname-text" type="text">
+                      <input class="btn" type="submit" value="Add">
+                  </div>
+              </form>
+            </div>
+            <div class="col-sm-2">
+              <div class="font-px-24">TOTAL&nbsp;</div><div class="well" id="total-projects">0 projects</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="list-group list-cust">
+                    <div class="list-group-item active"><div class="font-px-24" style="display: inline;">TODO&nbsp;</div><div class="well text-inside-well" id="projectsToDo-proj-count">0 projects</div></div>
+                    <div id="projectsToDo" class="draggableProjects"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="list-group list-cust">
+                    <div class="list-group-item active"><div class="font-px-24" style="display: inline;">In Progress&nbsp;</div><div class="well text-inside-well" id="projectsInProgress-proj-count">0 projects</div></div>
+                    <div id="projectsInProgress" class="draggableProjects"></div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="list-group list-cust">
+                    <div class="list-group-item active"><div class="font-px-24" style="display: inline;">Done&nbsp;</div><div class="well text-inside-well" id="projectsDone-proj-count">0 projects</div></div>
+                    <div id="projectsDone" class="draggableProjects"></div>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>
